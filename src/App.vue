@@ -1,18 +1,18 @@
 <template>
-  <NavBar />
-  <main class="py-4 px-6">
+  <!-- <NavBar /> -->
+  <main class="">
 
     <router-view />
   </main>
 </template>
 
 <script>
-import NavBar from "./components/NavBar.vue";
+// import NavBar from "./components/NavBar.vue";
 
 export default {
   name: "App",
   components: {
-    NavBar,
+    // NavBar,
   },
 };
 </script>

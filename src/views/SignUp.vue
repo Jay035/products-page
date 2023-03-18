@@ -1,6 +1,7 @@
 <template>
-  <div class="container mt-8">
-    <div class="flex flex-col gap-3 w-full">
+  <NavBar /> 
+  <div class="container">
+    <div class="flex flex-col mt-8 gap-3 px-6 w-full">
       <!-- card-header -->
       <h1 class="text-2xl font-semibold">Create an account</h1>
       <!-- <p class="font-medium text-black/80">Let's get started</p> -->
@@ -36,8 +37,9 @@
           </div>
 
           <button
+          :disabled="email === '' || password === ''"
             type="submit"
-            class="w-full mt-6 bg-black hover:bg-[#5A833A]/90 text-white px-4 py-2 rounded-lg"
+            class="w-full mt-6 bg-black disabled:bg-black/50 hover:bg-[#5A833A]/90 text-white px-4 py-2 rounded-lg"
           >
             Create account
           </button>
@@ -63,42 +65,26 @@
   </div>
 </template>
 
-<script setup>
-import { ref } from "vue";
-import { useRouter } from "vue-router";
-import {
-  createUserWithEmailAndPassword,
-  GoogleAuthProvider,
-  signInWithPopup,
-} from "@firebase/auth";
-import { auth } from "@/firebaseConfig";
+<script>
+import NavBar from "../components/NavBar.vue";
 import googleIcon from "../assets/google-icon.png";
+import FormValidation from "../composables/FormValidation";
 
-const email = ref("");
-const password = ref("");
-const error = ref(null);
+export default {
+  data() {
+    return {
+      googleIcon: googleIcon,
+    };
+  },
+  components: {
+    NavBar,
+  },
 
-const router = useRouter();
+  setup() {
+    const {email, password, error, Register, signInWithGoogle} = FormValidation();
 
-const Register = async () => {
-  try {
-    await createUserWithEmailAndPassword(auth, email.value, password.value);
-    console.log("successfully registered");
-    console.log(auth.currentUser);
-    router.push("/");
-  } catch (err) {
-    error.value = err.message;
-  }
-};
-
-const signInWithGoogle = async () => {
-  try {
-    const provider = await new GoogleAuthProvider();
-    await signInWithPopup(auth, provider);
-    router.push("/");
-  } catch (err) {
-    console.log(err.message);
-  }
+    return {email, password, error, Register, signInWithGoogle}
+  },
 };
 </script>
 

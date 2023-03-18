@@ -1,7 +1,9 @@
 import { createRouter, createWebHistory } from "vue-router";
 import LogIn from "../views/LogIn.vue";
 import SignUp from "../views/SignUp.vue";
-import Products from "../views/Products.vue";
+import ProductsPage from "../views/ProductsPage.vue";
+import ProductDetails from "../views/ProductDetails.vue";
+import NotFound from "../views/NotFound.vue";
 import Home from "../views/Home.vue";
 import { auth } from "@/firebaseConfig";
 import { onAuthStateChanged } from "firebase/auth";
@@ -25,10 +27,22 @@ const routes = [
   {
     path: "/products",
     name: "ProductsPage",
-    component: Products,
+    component: ProductsPage,
     meta: {
       requiresAuth: true,
     },
+  },
+  {
+    path: "/products/:id",
+    name: "ProductDetails",
+    component: ProductDetails,
+
+  },
+  {
+    path: "/:catchAll(.*)",
+    name: "pageNotFound",
+    component: NotFound,
+
   },
 ];
 
@@ -54,8 +68,8 @@ router.beforeEach(async (to, from, next) => {
         if(await getCurrentUser()){
             next();
         }else{
-            alert("You don't have access!");
-            next("/")
+            alert("You need to login to view products");
+            next("/login")
         }
     }else{
         next();

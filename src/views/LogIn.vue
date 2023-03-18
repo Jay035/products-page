@@ -1,5 +1,6 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
+  <NavBar />
   <div class="container mt-8 max-w-lg mx-auto">
     <div class="flex flex-col gap-3 w-full">
       <div class="">
@@ -42,13 +43,14 @@
           </div>
 
           <button
+            :disabled="email === '' || password === ''"
             type="submit"
-            class="w-full mt-6 bg-black hover:bg-[#5A833A]/90 text-white px-4 py-2 rounded-lg"
+            class="w-full font-medium mt-6 bg-black disabled:bg-black/50 hover:bg-[#5A833A]/90 text-white px-4 py-2 rounded-lg"
           >
             Login
           </button>
 
-          <p class="opacity-90 text-center font-medium">Or</p>
+          <p class="opacity-90 text-center font-normal">Or</p>
 
           <button
             class="w-full flex justify-center items-center gap-4 border border-gray-500 py-2 font-medium rounded-lg hover:border-2"
@@ -70,52 +72,26 @@
   </div>
 </template>
 
-<script setup>
-import { ref } from "vue";
-import { useRouter } from "vue-router";
-import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "@firebase/auth";
-import { auth } from "@/firebaseConfig";
+<script>
 import googleIcon from "../assets/google-icon.png";
+import NavBar from "../components/NavBar.vue";
+import FormValidation from "../composables/FormValidation";
 
-const email = ref("");
-const password = ref("");
-const error = ref(null);
+export default {
+  data() {
+    return {
+      googleIcon: googleIcon,
+    };
+  },
+  components: {
+    NavBar,
+  },
 
-const router = useRouter();
+  setup() {
+    const { logIn, email, password, error, signInWithGoogle } = FormValidation();
 
-const logIn = async () => {
-  try {
-    await signInWithEmailAndPassword(auth, email.value, password.value);
-    console.log("successfully signed in");
-    console.log(auth.currentUser);
-    router.push("/");
-  } catch (err) {
-    console.log(err.code);
-    switch (err.code) {
-      case "auth/invalid-email":
-        error.value = "Invalid email";
-        break;
-      case "auth/user-not-found":
-        error.value = "No account with that email was found";
-        break;
-      case "auth/wrong-password":
-        error.value = "Incorrect password";
-        break;
-      default:
-        error.value = "Incorrect email or password";
-        break;
-    }
-  }
-};
-
-const signInWithGoogle = async () => {
-  try {
-    const provider = await new GoogleAuthProvider();
-    await signInWithPopup(auth, provider);
-    router.push("/");
-  } catch (err) {
-    console.log(err.message);
-  }
+    return { logIn, email, password, error, signInWithGoogle };
+  },
 };
 </script>
 
