@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <NavBar />
-  <div class="container mt-8 max-w-lg mx-auto">
+  <div class="container mt-20 max-w-lg mx-auto">
     <div class="flex flex-col gap-3 w-full">
       <div class="">
         <h1 class="text-2xl font-semibold">Hey, hello !emoji</h1>
@@ -24,7 +24,6 @@
               name="email"
               value
               required
-              autofocus
               v-model="email"
             />
           </div>

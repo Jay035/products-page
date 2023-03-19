@@ -1,7 +1,6 @@
 <template>
-  <NavBar /> 
-  <div class="container">
-    <div class="flex flex-col mt-8 gap-3 px-6 w-full">
+  <NavBar />
+    <div class="container max-w-lg mx-auto flex flex-col mt-20 gap-3 px-6 w-full">
       <!-- card-header -->
       <h1 class="text-2xl font-semibold">Create an account</h1>
       <!-- <p class="font-medium text-black/80">Let's get started</p> -->
@@ -18,7 +17,6 @@
               name="email"
               value
               required
-              autofocus
               v-model="email"
             />
           </div>
@@ -37,7 +35,7 @@
           </div>
 
           <button
-          :disabled="email === '' || password === ''"
+            :disabled="email === '' || password === ''"
             type="submit"
             class="w-full mt-6 bg-black disabled:bg-black/50 hover:bg-[#5A833A]/90 text-white px-4 py-2 rounded-lg"
           >
@@ -62,7 +60,6 @@
         </p>
       </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -81,9 +78,10 @@ export default {
   },
 
   setup() {
-    const {email, password, error, Register, signInWithGoogle} = FormValidation();
+    const { email, password, error, Register, signInWithGoogle } =
+      FormValidation();
 
-    return {email, password, error, Register, signInWithGoogle}
+    return { email, password, error, Register, signInWithGoogle };
   },
 };
 </script>

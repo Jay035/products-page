@@ -1,20 +1,20 @@
 <template>
   <nav
-    class="flex justify-between items-center w-full relative py-4 px-6 text-lg"
+    class="flex fixed top-0 justify-between items-center w-full  py-4 px-6 text-lg"
   >
     <h1 class="font-semibold"><router-link to="/">ShopConfi</router-link></h1>
     <div
       :class="
         isMenuOpen
-          ? 'flex flex-col bg-white absolute top-0 left-0 h-screen w-full'
-          : 'hidden relative w-fit'
+          ? 'flex flex-col bg-white absolute top-0 left-0 h-screen md:relative md:h-fit w-full md:w-fit'
+          : 'hidden md:flex relative w-fit'
       "
       class="justify-center items-center"
     >
       <!-- close btn -->
       <div
         @click="closeMenu"
-        class="text-2xl font-bold absolute top-6 right-8 cursor-pointer w-fit"
+        class="text-2xl font-bold md:hidden absolute top-6 right-8 cursor-pointer w-fit"
       >
         X
       </div>
@@ -36,7 +36,7 @@
             >LOGIN</router-link
           >
           <router-link
-            to="/register"
+            to="/signup"
             @click.prevent="closeMenu"
             class="bg-[#5A833A] text-white px-4 py-2 rounded-lg"
             v-if="!isLoggedIn"
@@ -72,7 +72,7 @@
         >LOGIN</router-link
       >
       <router-link
-        to="/register"
+        to="/signup"
         @click.prevent="closeMenu"
         class="bg-[#5A833A] text-white px-4 py-2 rounded-lg"
         v-if="!isLoggedIn"
