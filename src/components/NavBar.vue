@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="flex fixed top-0 justify-between items-center w-full  py-4 px-6 text-lg"
+    class="flex fixed top-0 justify-between items-center w-full py-4 px-6 lg:px-14 text-lg"
   >
     <h1 class="font-semibold"><router-link to="/">ShopConfi</router-link></h1>
     <div

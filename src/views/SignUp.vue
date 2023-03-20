@@ -1,6 +1,6 @@
 <template>
   <NavBar />
-    <div class="container max-w-lg mx-auto flex flex-col mt-20 gap-3 px-6 w-full">
+    <div class="container max-w-lg mx-auto flex flex-col justify-center gap-3 w-full h-screen">
       <!-- card-header -->
       <h1 class="text-2xl font-semibold">Create an account</h1>
       <!-- <p class="font-medium text-black/80">Let's get started</p> -->

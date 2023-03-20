@@ -2,7 +2,7 @@
   <NavBar />
   <div v-if="productsLoading" class="">
         Loading</div>
-  <div class="px-6 mt-20">
+  <div class="px-6 lg:px-14 mt-20">
     <!-- <h1>ProductsPage</h1> -->
     <!-- filter  -->
     <div class="flex flex-wrap gap-x-4 gap-y-1 mb-3 uppercase text-black/80">
@@ -14,7 +14,7 @@
       <button>Groceries</button>
       <button>Home-decoration</button>
     </div>
-    <section class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-10">
+    <section class="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-10">
       <div v-for="product in products" :key="product.id" class="w-full">
         <div
           class="border border-black bg-black/70 rounded-lg h-[200px] px-4 flex justify-center items-center"

@@ -1,11 +1,11 @@
 import { ref } from "vue";
 
-export default function FetchProductFromAPI(id) {
+export default function FetchProductFromAPI() {
   const product = ref(null);
   const productLoading = ref(true);
   const error = ref(null);
 
-  const fetchProduct = async () => {
+  const fetchProduct = async (id) => {
     try {
       let data = await fetch("https://dummyjson.com/products/" + id);
       if(!data.ok){

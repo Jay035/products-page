@@ -1,7 +1,7 @@
 <template>
   <NavBar />
-  {{ routes.params.id }}
-  <div v-if="error" class="text-red-500 font-medium">
+  {{ $this.router.params.id }}
+  <!-- <div v-if="error" class="text-red-500 font-medium">
     {{ error }} {{ routes.params.id }}
   </div>
   <div v-if="productLoading" class="">Loading</div>
@@ -18,7 +18,7 @@
     </div>
 
     <div class="mt-2 tracking-tight">
-      <!-- <span>{{ product.category }}</span> -->
+      <span>{{ product.category }}</span>
       <h1 class="capitalize text-lg text-[#0e0d0d] leading-7 font-semibold">
         {{ product.title }}
       </h1>
@@ -35,7 +35,7 @@
           <h1>${{product.price}} <span>{{ product.discountPercentage }}% off</span></h1>
         </div>
     </div>
-  </div>
+  </div> -->
 </template>
 
 <script>
@@ -51,9 +51,9 @@ export default {
 
   setup(props) {
     const { error, product, productLoading, fetchProduct } =
-      FetchProductFromAPI(props.id);
+      FetchProductFromAPI();
 
-    fetchProduct();
+    fetchProduct(props.id);
     return { error, product, productLoading, fetchProduct };
   },
 };

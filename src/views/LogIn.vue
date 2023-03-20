@@ -1,8 +1,7 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <NavBar />
-  <div class="container mt-20 max-w-lg mx-auto">
-    <div class="flex flex-col gap-3 w-full">
+    <div class="container max-w-lg mx-auto flex flex-col justify-center gap-3 w-full h-screen">
       <div class="">
         <h1 class="text-2xl font-semibold">Hey, hello !emoji</h1>
         <p>Enter the information you entered while registering</p>
@@ -62,12 +61,11 @@
 
         <p class="text-center mt-10">
           Don't have an account?
-          <router-link to="/register" class="underline font-bold"
+          <router-link to="/signup" class="underline font-bold"
             >Sign up</router-link
           >
         </p>
       </div>
-    </div>
   </div>
 </template>
 

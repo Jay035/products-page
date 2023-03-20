@@ -1,12 +1,12 @@
 <template>
   <section class="bg-[#fbead2] flex  h-screen px-6 ">
-    <div class="flex flex-col items-center justify-center gap-6 text-center">
-      <h1 class="text-3xl md:text-4xl">
+    <div class="flex flex-col items-center justify-center gap-6 lg:gap-8 text-center max-w-3xl mx-auto">
+      <h1 class="text-3xl md:text-4xl lg:text-6xl">
         Shop Smarter, Not Harder:
         <span class="text-[#59833a] font-semibold">ShopConfi</span> Has
         Everything You Need
       </h1>
-      <p class="font-normal md:text-lg">
+      <p class="font-normal md:text-lg lg:text-xl">
         ShopConfi is your one-stop-shop for all things gadgets, decor, skin-care
         products, groceries and fragrances. With a wide variety of products
         available, customers can find the perfect item, for

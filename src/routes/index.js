@@ -36,13 +36,11 @@ const routes = [
     path: "/products/:id",
     name: "ProductDetails",
     component: ProductDetails,
-
   },
   {
     path: "/:catchAll(.*)",
     name: "pageNotFound",
     component: NotFound,
-
   },
 ];
 
@@ -54,28 +52,29 @@ const router = createRouter({
 });
 
 const getCurrentUser = () => {
-    return new Promise((resolve, reject) => {
-        const removeListener = onAuthStateChanged(
-            auth, (user) => {
-                removeListener();
-                resolve(user);
-            },
-            reject
-        );
-    })
-}
+  return new Promise((resolve, reject) => {
+    const removeListener = onAuthStateChanged(
+      auth,
+      (user) => {
+        removeListener();
+        resolve(user);
+      },
+      reject
+    );
+  });
+};
 
 router.beforeEach(async (to, from, next) => {
-    if(to.matched.some(record => record.meta.requiresAuth)){
-        if(await getCurrentUser()){
-            next();
-        }else{
-            alert("You need to login to view products");
-            next("/login")
-        }
-    }else{
-        next();
+  if (to.matched.some((record) => record.meta.requiresAuth)) {
+    if (await getCurrentUser()) {
+      next();
+    } else {
+      alert("You need to login to view products");
+      next("/login");
     }
+  } else {
+    next();
+  }
 });
 
 export default router;
