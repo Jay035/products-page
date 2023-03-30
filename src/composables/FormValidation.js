@@ -18,7 +18,7 @@ export default function FormValidation() {
     try {
       await createUserWithEmailAndPassword(auth, email.value, password.value);
       console.log("successfully registered");
-      console.log(auth.currentUser);
+      console.log(auth.currentUser.displayName);
       router.push("/");
     } catch (err) {
       error.value = err.message;

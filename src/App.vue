@@ -1,21 +1,22 @@
 <template>
-  <!-- <NavBar /> -->
-  <main class="">
-
+  <NavBar />
+  <main class="bg-[#fbead2] h-screen">
     <router-view />
+    <Footer />
   </main>
 </template>
 
 <script>
-// import NavBar from "./components/NavBar.vue";
+import NavBar from "./components/NavBar.vue";
+import Footer from "./components/Footer.vue";
 
 export default {
   name: "App",
   components: {
-    // NavBar,
+    Footer,
+    NavBar,
   },
 };
 </script>
 
-<style>
-</style>
+<style></style>

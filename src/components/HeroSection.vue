@@ -1,5 +1,5 @@
 <template>
-  <section class="bg-[#fbead2] flex  h-screen px-6 ">
+  <section class="bg-[#fbead2] flex h-screen px-6 ">
     <div class="flex flex-col items-center justify-center gap-6 lg:gap-8 text-center max-w-3xl mx-auto">
       <h1 class="text-3xl md:text-4xl lg:text-6xl">
         Shop Smarter, Not Harder:

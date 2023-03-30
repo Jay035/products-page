@@ -1,12 +1,11 @@
 <template>
-  <NavBar />
-    <div class="container max-w-lg mx-auto flex flex-col justify-center gap-3 w-full h-screen">
+    <div class="container px-6 lg:px-14 max-w-lg mx-auto flex flex-col justify-center gap-3 w-full h-screen">
       <!-- card-header -->
       <h1 class="text-2xl font-semibold">Create an account</h1>
       <!-- <p class="font-medium text-black/80">Let's get started</p> -->
       <div class="">
-        <div v-if="error" class="text-red-500 font-medium">{{ error }} !</div>
-        <form action="#" @submit.prevent="Register" class="flex flex-col gap-4">
+        <div v-if="store.error" class="text-red-500 font-medium">{{store.error }} !</div>
+        <form @submit.prevent="store.Register" class="flex flex-col gap-4">
           <div class="flex flex-col">
             <label for="email" class="">Email</label>
 
@@ -17,7 +16,7 @@
               name="email"
               value
               required
-              v-model="email"
+              v-model="store.email"
             />
           </div>
 
@@ -30,7 +29,7 @@
               class="border outline-black border-black/80 rounded-lg px-2 py-1"
               name="password"
               required
-              v-model="password"
+              v-model="store.password"
             />
           </div>
 
@@ -39,7 +38,8 @@
             type="submit"
             class="w-full mt-6 bg-black disabled:bg-black/50 hover:bg-[#5A833A]/90 text-white px-4 py-2 rounded-lg"
           >
-            Create account
+          <span v-if="!store.loading">Create account</span>
+            <span v-if="store.loading"> Creating account....</span>
           </button>
 
           <p class="opacity-90 text-center font-medium">Or</p>
@@ -63,9 +63,12 @@
 </template>
 
 <script>
-import NavBar from "../components/NavBar.vue";
+// import NavBar from "../components/NavBar.vue";
 import googleIcon from "../assets/google-icon.png";
-import FormValidation from "../composables/FormValidation";
+// import FormValidation from "../composables/FormValidation";
+// import {useStore} from 'vuex';
+// import { computed } from "vue";
+import {useFormStore} from '@/store'
 
 export default {
   data() {
@@ -74,14 +77,13 @@ export default {
     };
   },
   components: {
-    NavBar,
+    // NavBar,
   },
 
   setup() {
-    const { email, password, error, Register, signInWithGoogle } =
-      FormValidation();
-
-    return { email, password, error, Register, signInWithGoogle };
+    const store = useFormStore();
+    return {store}
+    
   },
 };
 </script>

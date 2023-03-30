@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="flex fixed top-0 justify-between items-center w-full py-4 px-6 lg:px-14 text-lg"
+    class="flex z-50 absolute top-0 bg-[#fbead2] justify-between items-center w-full py-4 px-6 lg:px-14 text-lg"
   >
     <h1 class="font-semibold"><router-link to="/">ShopConfi</router-link></h1>
     <div
@@ -31,25 +31,31 @@
           <router-link
             to="/login"
             @click.prevent="closeMenu"
-            class="bg-transparent border border-black text-black px-4 py-2 rounded-lg"
+            class="bg-transparent text-center border border-black text-black px-4 py-2 rounded-lg"
             v-if="!isLoggedIn"
             >LOGIN</router-link
           >
           <router-link
             to="/signup"
             @click.prevent="closeMenu"
-            class="bg-[#5A833A] text-white px-4 py-2 rounded-lg"
+            class="bg-[#5A833A] text-center text-white px-4 py-2 rounded-lg"
             v-if="!isLoggedIn"
             >SIGN UP</router-link
           >
           <button
-        class="bg-[#5A833A]/50 text-black px-4 py-2 rounded-lg"
-        v-if="isLoggedIn"
-      >
-        {{ auth.currentUser.displayName }}
-      </button>
+            class="bg-[#5A833A]/50 text-center text-black px-4 py-2 rounded-lg"
+            v-if="isLoggedIn && auth.currentUser.displayName"
+          >
+            {{ auth.currentUser.displayName }}
+          </button>
           <button
-            class="bg-[#5A833A] text-white px-4 py-2 rounded-lg"
+            class="bg-[#5A833A]/50 text-center text-black truncate px-4 py-2 rounded-lg"
+            v-if="isLoggedIn && !auth.currentUser.displayName"
+          >
+            {{ auth.currentUser.email }}
+          </button>
+          <button
+            class="bg-[#5A833A] text-center text-white px-4 py-2 rounded-lg"
             @click="handleSignOut"
             v-if="isLoggedIn"
           >
@@ -58,7 +64,10 @@
         </div>
       </ul>
     </div>
-    <div class="flex flex-col gap-[3px] cursor-pointer md:hidden" @click="toggleMenu">
+    <div
+      class="flex flex-col gap-[3px] cursor-pointer md:hidden"
+      @click="toggleMenu"
+    >
       <span class="w-7 h-[4px] bg-black block"></span>
       <span class="w-7 h-[4px] bg-black block"></span>
       <span class="w-7 h-[4px] bg-black block"></span>
@@ -79,10 +88,16 @@
         >SIGN UP</router-link
       >
       <button
-        class="bg-[#5A833A]/50 text-white px-4 py-2 rounded-lg"
-        v-if="isLoggedIn"
+        class="bg-[#5A833A]/50 text-center text-black px-4 py-2 rounded-lg"
+        v-if="isLoggedIn && auth.currentUser.displayName"
       >
-        {{ auth.currentUser.displayName }}
+        {{ auth?.currentUser?.displayName }}
+      </button>
+      <button
+        class="bg-[#5A833A]/50 text-center text-black truncate max-w-[200px] px-4 py-2 rounded-lg"
+        v-if="isLoggedIn && !auth.currentUser.displayName"
+      >
+        {{ auth?.currentUser?.email }}
       </button>
       <button
         class="bg-[#5A833A] text-white px-4 py-2 rounded-lg"
@@ -109,6 +124,7 @@ onMounted(() => {
   onAuthStateChanged(auth, (user) => {
     if (user) {
       isLoggedIn.value = true;
+      console.log(auth.currentUser);
     } else {
       isLoggedIn.value = false;
     }
@@ -125,6 +141,7 @@ const closeMenu = () => {
 
 const handleSignOut = async () => {
   try {
+    alert("Signing out")
     await signOut(auth);
     router.push("/");
   } catch (err) {

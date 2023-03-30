@@ -1,6 +1,5 @@
 <template>
-  <NavBar />
-  <div class="px-6 mt-20">Product details</div>
+  <div class="px-6 mt-44">Product details {{ store.product.id }}</div>
   <!-- {{ $this.routes.params.id }} -->
   <!-- <div v-if="error" class="text-red-500 font-medium">
     {{ error }} {{ routes.params.id }}
@@ -40,22 +39,21 @@
 </template>
 
 <script>
-// import FetchProductFromAPI from "../composables/FetchProducts";
-import NavBar from "../components/NavBar.vue";
+import { useProductsStore } from "@/store";
 
 export default {
   name: "ProductDetails",
   components: {
-    NavBar,
   },
-  props: ["id"],
-
-  //   setup(props) {
-  //     const { error, product, productLoading, fetchProduct } =
-  //       FetchProductFromAPI();
-
-  //     fetchProduct(props.id);
-  //     return { error, product, productLoading, fetchProduct };
+  // prop: {
+  //   product: {
+  //     type: Array
   //   },
+  // },
+  setup() {
+    const store = useProductsStore();
+    return {store}
+    
+  },
 };
 </script>
