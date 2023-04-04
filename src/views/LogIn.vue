@@ -2,7 +2,7 @@
 <template>
     <div class="container px-6 lg:px-14 max-w-lg mx-auto flex flex-col justify-center gap-3 w-full h-screen">
       <div class="">
-        <h1 class="text-2xl font-semibold">Hey, hello !emoji</h1>
+        <h1 class="text-2xl font-semibold">Hey, hello 👋</h1>
         <p>Enter the information you entered while registering</p>
       </div>
 
